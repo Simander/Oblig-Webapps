@@ -1,0 +1,65 @@
+﻿@model NettbutikkMVC.Models.Kunde
+
+@{
+    ViewBag.Title = "NyKunde";
+}
+
+<!DOCTYPE html>
+<head>
+    <title>OpprettBruker</title>
+</head>
+<body>
+    <div>
+
+        <h3>Registrer bruker</h3>
+        <form action="/Bruker/NyKunde" method="post">
+            <table>
+                <tr>
+                    <td>Fornavn: </td>
+                    <td><input type="text" name="Fornavn" /></td>
+                </tr>
+                <tr>
+                    <td>Etternavn: </td>
+                    <td><input type ="text" name ="Etternavn" /></td>
+                </tr>
+                <tr>
+                    <td>Telefon: </td>
+                    <td><input type="text" name="Telefon" /></td>
+                </tr>
+                <tr>
+                    <td>Adresse: </td>
+                    <td><input type="text" name="Adresse"/></td> 
+                </tr>
+                <tr>
+                    <td>Postnr: </td>
+                    <td><input type="text" name="Postnr"/></td>
+                </tr>
+                <tr>
+                    <td>Poststed: </td>
+                    <td><input type="text" name="Poststed" /></td>
+                </tr>
+                <tr>
+                    <td>Epost: </td>
+                    <td><input type="text" name="Epost" /></td>
+                </tr>
+                <tr>
+                    <td>Passord: </td>
+                    <td><input type="password" name="Passord" /></td>
+                </tr>
+                <tr>
+                    <td>Gjenta passordet: </td>
+                    <td><input type="password" name="PassordKopi" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Opprett bruker" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+
+
+
+

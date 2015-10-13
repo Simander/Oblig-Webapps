@@ -1,0 +1,33 @@
+﻿@model NettbutikkMVC.Models.Kunde
+
+@{
+    ViewBag.Title = "LoggInn";
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LoggInn</title>
+    </head>
+    <body>
+        <h1>Logg inn:</h1>
+        <form action="/Bruker/LoggInn" method="post">
+            <table>
+                <tr>
+                    <td>Brukernavn(Epost): </td>
+                    <td><input type="text" name="usrname" /></td>
+                </tr>
+                <tr>
+                    <td>Passord: </td>
+                    <td><input type="password" name="pword" /></td>
+                </tr>
+                <tr> 
+                    <td><input type="submit" value="Logg inn"/></td>
+                </tr>
+            </table>
+        </form>
+        <a href="/Bruker/NyKunde">Registrer deg</a>
+    </body>
+
+</html>
+
+

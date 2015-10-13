@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Nettbutikken.Models
+namespace NettbutikkMVC.Models
 {
     public class Poststed
     {
        [Key]
-        public int PostNR { get; set; }
+        public string PostNR { get; set; }
 
         public string PostSted { get; set; }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Nettbutikken.Models
+namespace NettbutikkMVC.Models
 {
     public class Vare
     {
