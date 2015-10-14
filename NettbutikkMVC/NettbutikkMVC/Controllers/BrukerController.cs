@@ -37,55 +37,38 @@ namespace NettbutikkMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoggInn(FormCollection innListe)
+        public string LoggInn(FormCollection innListe)
         {
-         /*   var brukernavn = innListe["usrname"];
-            var passord = innListe["pword"];
-            bool pool = false;
+            var brukernavn = innListe["usrname"];
+            var passord = Logikk.hashPword(innListe["pword"]);
             try
             {
                 using (var db = new KundeContext())
                 {
+                    
                     var funnetBruker = db.Kunder
-                       .FirstOrDefault(p => p.Epost == innListe["usrname"]);
+                       .FirstOrDefault(k => k.Epost == brukernavn);
                     if (funnetBruker == null) //fant ikke poststed, må legge inn et nytt
                     {
-                        pool = false;
+                        return "fant han ikkje";
                     }
                     else
                     {
-                        /*   if (funnetBruker.Passord == Logikk.hashPword(innListe["pword"]))
-                           {
-                               pool = true;
-                           }
-                           else
-                           {
-                               pool = false;
-                           }
-                          */
-                     /*   pool = true;
+                        if (funnetBruker.Passord.SequenceEqual( passord))
+                        {
+                            Session["LoggetInn"] = true;
+                            Session["Bruker"] = funnetBruker;
+
+                            return "Kundenr: " + ((Kunde)Session["Bruker"]).KundeNR + " | Brukernavn: " + ((Kunde)Session["Bruker"]).Epost + " er logget inn!";
+                        }
+                        return "funnetBruker.Passord: " + funnetBruker.Passord + " | innskrevet hash: " + passord;
                     }
-
                 }
-
             }
-            catch (Exception feil)
+            catch(Exception feil)
             {
-               pool = false;
-
-            }/*
-            bool loggedIn = pool;//Logikk.isLoggedIn(brukernavn, passord);
-            if (loggedIn == true)
-            {
-                
-                return RedirectToAction("RegistrertKundeOK");
+                return feil.ToString();
             }
-            else
-            {
-                Console.WriteLine("ikkje logget inn!");
-                return View();
-            }*/
-            return View();
         }
         //GET: /Bruker/CreateNyKunde
         public ActionResult NyKunde()
