@@ -27,17 +27,23 @@ namespace NettbutikkMVC.Controllers
             return View();
         }
 
-    
 
+        // GET: /Bruker/LoggUt
+        public ActionResult LoggUt()
+        {
+            Session["LoggetInn"] = false;
+            Session["Bruker"] = null;
+            return RedirectToAction("Index", "Home");
+        }
 
-    // GET: /Bruker/LoggInn
-    public ActionResult LoggInn()
+        // GET: /Bruker/LoggInn
+        public ActionResult LoggInn()
         {
             return View();
         }
 
         [HttpPost]
-        public string LoggInn(FormCollection innListe)
+        public ActionResult LoggInn(FormCollection innListe)
         {
             var brukernavn = innListe["usrname"];
             var passord = Logikk.hashPword(innListe["pword"]);
@@ -50,7 +56,7 @@ namespace NettbutikkMVC.Controllers
                        .FirstOrDefault(k => k.Epost == brukernavn);
                     if (funnetBruker == null) //fant ikke poststed, må legge inn et nytt
                     {
-                        return "fant han ikkje";
+                        return View();
                     }
                     else
                     {
@@ -58,16 +64,17 @@ namespace NettbutikkMVC.Controllers
                         {
                             Session["LoggetInn"] = true;
                             Session["Bruker"] = funnetBruker;
-
-                            return "Kundenr: " + ((Kunde)Session["Bruker"]).KundeNR + " | Brukernavn: " + ((Kunde)Session["Bruker"]).Epost + " er logget inn!";
+                            return RedirectToAction("Index", "Home");
+                            // return "Kundenr: " + ((Kunde)Session["Bruker"]).KundeNR + " | Brukernavn: " + ((Kunde)Session["Bruker"]).Epost + " er logget inn!";
                         }
-                        return "funnetBruker.Passord: " + funnetBruker.Passord + " | innskrevet hash: " + passord;
+                        //return "funnetBruker.Passord: " + funnetBruker.Passord + " | innskrevet hash: " + passord;
                     }
                 }
+                return View();
             }
-            catch(Exception feil)
-            {
-                return feil.ToString();
+            catch(Exception feil) { 
+
+                return View(feil) ;
             }
         }
         //GET: /Bruker/CreateNyKunde
@@ -77,6 +84,7 @@ namespace NettbutikkMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult NyKunde(FormCollection innListe)
         {
 

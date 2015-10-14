@@ -8,9 +8,9 @@ namespace NettbutikkMVC.Models
 {
     public class Poststed
     {
-       [Key]
+       [Key]    
         public string PostNR { get; set; }
-
+      
         public string PostSted { get; set; }
     }
 }

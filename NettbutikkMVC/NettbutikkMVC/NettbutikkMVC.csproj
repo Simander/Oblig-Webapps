@@ -122,10 +122,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BrukerController.cs" />
     <Compile Include="Controllers\ButikkController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bestilling.cs" />
+    <Compile Include="Models\Handlevogn.cs" />
     <Compile Include="Models\Kunde.cs" />
     <Compile Include="Models\KundeContext.cs" />
     <Compile Include="Models\Logikk.cs" />
@@ -143,6 +145,7 @@
     <Content Include="Views\Bruker\NyKunde.cshtml" />
     <Content Include="Views\Bruker\RegistrertKundeOK.cshtml" />
     <Content Include="Views\Butikk\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

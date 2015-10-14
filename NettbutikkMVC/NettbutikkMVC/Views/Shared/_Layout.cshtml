@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,9 +22,19 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    
-                    <li><a href="/Bruker/LoggInn">Logg inn / Registrer deg</a></li>
-                    
+                    @if (Session["Bruker"] != null)
+                    {
+                        <li><p class="menu_text">
+                            Du er logget inn som:
+                                <!--Henter referanse til Kunde klassen for å kunne hente ut navn og kundenr til innlogget bruker-->
+                                @{NettbutikkMVC.Models.Kunde kunde = (NettbutikkMVC.Models.Kunde)Session["Bruker"];}
+                                @kunde.Fornavn @kunde.Etternavn - @kunde.KundeNR    
+                        </p></li>
+                        <li><a href="/Bruker/LoggUt">Logg ut</a></li>
+                    }
+                    else{
+                        <li><a href="/Bruker/LoggInn">Logg inn / Registrer deg</a></li>
+                    }
                 </ul>
             </div>
         </div>
