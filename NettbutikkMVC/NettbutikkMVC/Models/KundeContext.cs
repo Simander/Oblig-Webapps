@@ -14,7 +14,7 @@ namespace NettbutikkMVC.Models
         public KundeContext()
             : base("name=Kunde")
         {
-            Database.CreateIfNotExists();
+          //  Database.CreateIfNotExists();
         }
         public DbSet<Kunde> Kunder { get; set; }
         public DbSet<Poststed> Poststeder { get; set; }

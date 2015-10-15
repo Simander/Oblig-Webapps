@@ -87,52 +87,54 @@ namespace NettbutikkMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult NyKunde(FormCollection innListe)
         {
-
-            Console.WriteLine("In the mucK");
-            try
+            if (ModelState.IsValid)
             {
-                using (var db = new Models.KundeContext())
+                Console.WriteLine("In the mucK");
+                try
                 {
-                    var nyKunde = new Models.Kunde();
-                    nyKunde.Fornavn = innListe["Fornavn"];
-                    nyKunde.Etternavn = innListe["Etternavn"];
-                    nyKunde.Adresse = innListe["Adresse"];
-                    nyKunde.TelefonNR = int.Parse(innListe["Telefon"]);
-                    nyKunde.Epost = innListe["Epost"];
-                    if (innListe["Passord"].Equals(innListe["PassordKopi"]))
+                    using (var db = new Models.KundeContext())
                     {
-                        nyKunde.Passord = Logikk.hashPword(innListe["Passord"]);
-                    }
-                    //Kan ikke bruke dette array i LINQ nedenfor
-                    string innPostNr = innListe["Postnr"];
-                    var funnetPoststed = db.Poststeder
-                        .FirstOrDefault(p => p.PostNR == innPostNr);
-                    if(funnetPoststed == null) //fant ikke poststed, må legge inn et nytt
-                    {
-                        var nyttPoststed = new Models.Poststed();
+                        var nyKunde = new Models.Kunde();
+                        nyKunde.Fornavn = innListe["Fornavn"];
+                        nyKunde.Etternavn = innListe["Etternavn"];
+                        nyKunde.Adresse = innListe["Adresse"];
+                        nyKunde.TelefonNR = int.Parse(innListe["Telefonnummer"]);
+                        nyKunde.Epost = innListe["Epost"];
+                        if (innListe["Passord"].Equals(innListe["PassordKopi"]))
+                        {
+                            nyKunde.Passord = Logikk.hashPword(innListe["Passord"]);
+                        }
+                        //Kan ikke bruke dette array i LINQ nedenfor
+                        string innPostNr = innListe["Postnummer"];
+                        var funnetPoststed = db.Poststeder
+                            .FirstOrDefault(p => p.PostNR == innPostNr);
+                        if (funnetPoststed == null) //fant ikke poststed, må legge inn et nytt
+                        {
+                            var nyttPoststed = new Models.Poststed();
 
-                        nyttPoststed.PostNR = innListe["Postnr"];
-                        nyttPoststed.PostSted = innListe["Poststed"];
-                        db.Poststeder.Add(nyttPoststed);
-                        //det nye poststedet legges i den nye brukeren
-                        nyKunde.Poststed = nyttPoststed;
-                    }
-                    else
-                    {
-                        //fant poststedet, legger det inn på bruker
-                        nyKunde.Poststed = funnetPoststed;
-                    }
-                    db.Kunder.Add(nyKunde);
-                    db.SaveChanges();
-                    return RedirectToAction("RegistrertKundeOK");
+                            nyttPoststed.PostNR = innListe["Postnummer"];
+                            nyttPoststed.PostSted = innListe["Poststed"];
+                            db.Poststeder.Add(nyttPoststed);
+                            //det nye poststedet legges i den nye brukeren
+                            nyKunde.Poststed = nyttPoststed;
+                        }
+                        else
+                        {
+                            //fant poststedet, legger det inn på bruker
+                            nyKunde.Poststed = funnetPoststed;
+                        }
+                        db.Kunder.Add(nyKunde);
+                        db.SaveChanges();
+                        return RedirectToAction("RegistrertKundeOK");
 
+                    }
+                }
+                catch (Exception feil)
+                {
+                    return View();
                 }
             }
-            catch(Exception feil)
-            {
-                return View();
-            }
-            
+            else return View();
         }
         public ActionResult RegistrertKundeOK()
         {
