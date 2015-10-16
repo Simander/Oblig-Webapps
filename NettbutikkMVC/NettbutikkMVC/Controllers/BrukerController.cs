@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using NettbutikkMVC.Models;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace NettbutikkMVC.Controllers
 {
@@ -135,10 +136,22 @@ namespace NettbutikkMVC.Controllers
 
                      }
                  }
-                 catch (Exception feil)
+                 catch (DbEntityValidationException e)
                  {
-                     return View();
-                 }
+
+            
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                ve.PropertyName, ve.ErrorMessage);
+                        }
+                    }
+                    throw;
+                }
             }
             else return View();
         }

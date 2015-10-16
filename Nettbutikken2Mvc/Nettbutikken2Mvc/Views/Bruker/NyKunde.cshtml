@@ -1,10 +1,10 @@
-﻿@model NettbutikkMVC.Models.Kunde
+﻿@model Nettbutikken2Mvc.Models.Kunde
 
 @{
-    ViewBag.Title = "NyKunde";
+    ViewBag.Title = "Registrer kunde";
 }
 
-<h2>NyKunde</h2>
+<h2>Registrer deg:</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Kunde</h4>
+        <h4>NyKunde</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,10 +32,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TelefonNR, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Telefonnummer, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TelefonNR, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TelefonNR, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Telefonnummer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Telefonnummer, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -48,18 +48,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PostNR, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Postnummer, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PostNR, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostNR, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Postnummer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Postnummer, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PostSted, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Poststed, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PostSted, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostSted, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Poststed, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Poststed, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -74,29 +74,29 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Passord, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="password" name="Passord" class="form-control" />
-              
+                @Html.EditorFor(model => model.Passord, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.Passord, "", new { @class = "text-danger", @type="password"})
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Passord, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PassordKopi, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               <input type="password" name="PassordKopi" class="form-control" />
-              
+                @Html.EditorFor(model => model.PassordKopi, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.PassordKopi, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Registrer" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Tilbake til innlogging", "LoggInn")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

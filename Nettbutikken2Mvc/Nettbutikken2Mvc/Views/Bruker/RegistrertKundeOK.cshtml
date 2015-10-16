@@ -1,0 +1,25 @@
+﻿@model List<Nettbutikken2Mvc.Models.dbKunde>
+
+@{
+    ViewBag.Title = "RegistrertKundeOK";
+}
+
+<h2>RegistrertKundeOK</h2>
+
+<h3>
+    Her er brukerne i databasen:
+</h3>
+<table>
+
+    @foreach (var kunde in Model)
+    {
+        <tr>
+            <td>@kunde.Kundenummer</td>
+            <td>@kunde.Fornavn</td>
+            <td>@kunde.Etternavn</td>
+            <td>@kunde.Adresse</td>
+
+
+        </tr>
+    }
+</table>
