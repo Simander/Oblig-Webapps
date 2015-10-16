@@ -17,7 +17,7 @@ namespace NettbutikkMVC.Models
           //  Database.CreateIfNotExists();
         }
         public DbSet<Kunde> Kunder { get; set; }
-        public DbSet<Poststed> Poststeder { get; set; }
+       // public DbSet<Poststed> Poststeder { get; set; }
     }
    
 }
