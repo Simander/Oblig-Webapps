@@ -61,6 +61,7 @@ namespace Nettbutikken2Mvc.Models
         public dbPoststed Poststed { get; set; }
         public string Epost { get; set; }
         public byte[] Passord { get; set; }
+        
     }
     public class dbPoststed
     {

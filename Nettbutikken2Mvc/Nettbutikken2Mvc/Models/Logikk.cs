@@ -19,3 +19,29 @@ namespace Nettbutikken2Mvc.Models
         }
     }
 }
+        /*
+        public bool addToCart(HandlevognItem v)
+        {
+            Varer.AddLast(v);
+            return true;
+        }
+
+        public void slettVare(int vnr)
+        {
+            foreach (HandlevognItem hi in Varer)
+            {
+                if (hi.Vare.VareNR == vnr)
+                {
+                    if (hi.Antall > 1)
+                    {
+
+                        hi.Antall--;
+                    }
+                    else if (hi.Antall == 1)
+                    {
+                        Varer.Remove(hi);
+                    }
+                }
+            }
+        }
+*/
